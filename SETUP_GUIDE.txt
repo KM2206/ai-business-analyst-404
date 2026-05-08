@@ -1,0 +1,286 @@
+
+=======================================================================
+AI BUSINESS ANALYST — STEP BY STEP SETUP GUIDE (COMPLETE BEGINNER)
+=======================================================================
+Platform: Vercel (free website hosting)
+AI:       Your company-provided API key + Base URL
+No Azure. No SharePoint. No Excel. No passwords shared.
+=======================================================================
+
+
+-----------------------------------------------------------------------
+WHAT YOU WILL HAVE AT THE END
+-----------------------------------------------------------------------
+A private website link like:
+  https://ai-business-analyst-yourname.vercel.app
+
+Any colleague opens it in their browser → types company name →
+picks task from dropdown → clicks Run → gets full AI analysis.
+No code. No installs. Works on any device.
+
+
+-----------------------------------------------------------------------
+BEFORE YOU START — 3 THINGS YOU NEED FROM YOUR IT/AI TEAM
+-----------------------------------------------------------------------
+Ask your company AI team for these 3 values.
+You need them in Step 5. Write them down here:
+
+  COMPANY_API_KEY   = _________________________________
+  COMPANY_BASE_URL  = _________________________________
+  COMPANY_MODEL     = _________________________________
+
+From the screenshots you shared, these are likely:
+  COMPANY_API_KEY   = (the key your team gave you)
+  COMPANY_BASE_URL  = https://openai.generative.engine.capgemini.com/v1
+  COMPANY_MODEL     = openai.gpt-5-mini
+
+
+=======================================================================
+PART 1 — INSTALL NODE.JS  (5 minutes, done once ever)
+=======================================================================
+
+STEP 1: Download Node.js
+  Go to:  https://nodejs.org
+  Click the button that says "LTS" (the left green button)
+  It downloads a file like node-v20.x.x-x64.msi
+
+STEP 2: Install it
+  Double-click the downloaded file
+  Click Next on every single screen
+  Do not change anything — all defaults are fine
+  Click Finish
+
+STEP 3: Check it worked
+  Open VS Code
+  Click Terminal in the top menu → New Terminal
+  Type this exactly and press Enter:
+    node --version
+  You should see:  v20.x.x
+  If you see that — Node.js is installed. Move to Part 2.
+
+
+=======================================================================
+PART 2 — CREATE A GITHUB ACCOUNT  (stores your code)
+=======================================================================
+
+STEP 4: Sign up
+  Go to:  https://github.com
+  Click Sign Up (top right)
+  Use your PERSONAL email — not company email
+    (company email may be blocked from GitHub)
+  Choose any username and password
+  Check your email and click the verification link
+
+STEP 5: Create a new repository
+  A "repository" is just an online folder for your project.
+
+  After logging in:
+  Click the green "New" button on the left side
+  Fill in:
+    Repository name:  ai-business-analyst
+    Visibility:       Private   ← click this! So only you can see it
+    Check the box:    "Add a README file"
+  Click green "Create repository" button
+
+STEP 6: Install GitHub Desktop (easiest way to upload files)
+  Go to:  https://desktop.github.com
+  Click Download for Windows
+  Install it (all defaults, click Next)
+  Open GitHub Desktop
+  Click "Sign in to GitHub.com"
+  Log in with your GitHub username and password
+
+STEP 7: Clone (download) your repository to your PC
+  In GitHub Desktop:
+  Click File → Clone Repository
+  Click the "GitHub.com" tab
+  You will see "ai-business-analyst" in the list
+  Click it
+  Under "Local Path" — note WHERE it will save
+    (e.g. C:\Users\YourName\Documents\GitHub\ai-business-analyst)
+  Click Clone
+  Your repository folder is now on your PC.
+
+
+=======================================================================
+PART 3 — PUT THE PROJECT FILES IN YOUR REPOSITORY FOLDER
+=======================================================================
+
+STEP 8: Unzip the project files
+  Find the file:  ai-analyst-vercel.zip  (that you downloaded)
+  Right-click it → Extract All
+  Open the extracted folder
+  You will see a folder called "ai-analyst" inside
+  Open that folder — you will see:
+    pages/              (folder)
+      index.js
+      api/              (folder)
+        analyze.js
+    package.json
+    .gitignore
+
+STEP 9: Copy files into your GitHub folder
+  Select ALL the files and folders listed above
+  Copy them  (Ctrl+A to select all, then Ctrl+C)
+  Navigate to your GitHub folder from Step 7
+    (e.g. Documents\GitHub\ai-business-analyst)
+  Paste them there  (Ctrl+V)
+  If it asks to replace anything — click Yes
+
+STEP 10: Upload files to GitHub
+  Go back to GitHub Desktop
+  You will see all the new files listed under "Changes" on the left
+  At the bottom left, there is a box called "Summary"
+  Type:  initial upload
+  Click blue "Commit to main" button
+  Then click "Push origin" button at the top
+
+  Go to github.com → your repository → you should see the files there.
+  If yes — Part 3 complete!
+
+
+=======================================================================
+PART 4 — DEPLOY ON VERCEL  (makes it a live website)
+=======================================================================
+
+STEP 11: Create a Vercel account
+  Go to:  https://vercel.com
+  Click Sign Up
+  Choose:  Continue with GitHub
+  Click Authorize Vercel
+  This connects Vercel to your GitHub so it can read your code.
+
+STEP 12: Import your project
+  After logging in to Vercel:
+  Click "Add New..." → Project
+  You will see your "ai-business-analyst" repository listed
+  Click Import next to it
+
+STEP 13: Configure
+  Vercel will show a settings screen.
+  Framework Preset: it should auto-detect "Next.js"
+  If not — click the dropdown and select Next.js
+  Root Directory: leave blank
+  DO NOT CLICK DEPLOY YET — you must add your API key first in Step 14
+
+
+=======================================================================
+PART 5 — ADD YOUR COMPANY API KEY TO VERCEL  (the most important step)
+=======================================================================
+
+Still on the same Vercel screen from Step 13.
+
+STEP 14: Scroll down to "Environment Variables"
+  You will see fields for Name and Value.
+  Add these THREE entries one by one:
+
+  ┌─────────────────────┬────────────────────────────────────────────┐
+  │ NAME                │ VALUE                                      │
+  ├─────────────────────┼────────────────────────────────────────────┤
+  │ COMPANY_API_KEY     │ paste your company API key here            │
+  │ COMPANY_BASE_URL    │ paste your company base URL here           │
+  │ COMPANY_MODEL       │ paste your company model name here         │
+  └─────────────────────┴────────────────────────────────────────────┘
+
+  For each one:
+  - Type the NAME in the Name box
+  - Paste the VALUE in the Value box
+  - Click Add
+
+  These are NEVER visible to users. Vercel stores them securely.
+  Your API key never goes to GitHub or the browser.
+
+STEP 15: Deploy
+  Click the big "Deploy" button
+  Vercel builds your site — takes 60 to 90 seconds
+  You will see confetti and "Congratulations!"
+
+STEP 16: Get your URL
+  Vercel gives you a URL like:
+    https://ai-business-analyst-abc123.vercel.app
+  Click Visit to open it.
+
+
+=======================================================================
+PART 6 — TEST IT
+=======================================================================
+
+STEP 17: Test the site
+  The page opens in your browser
+  Left side:  type  Infosys  in the company box
+  Dropdown:   select  SWOT Analysis
+  Click:      Run Analysis
+  Wait 10-20 seconds
+  Full SWOT analysis appears on the right side
+
+  If it works → Share the URL with your team. You are done!
+
+STEP 18: Share with colleagues
+  Send them the Vercel URL
+  They open it in any browser — Chrome, Edge, Safari, mobile
+  No login required (unless you want to add a password — ask me)
+  No installs, no code, nothing to set up on their side
+
+
+=======================================================================
+HOW TO UPDATE THE APP IN FUTURE
+=======================================================================
+
+If you want to change anything (add task, change wording, etc):
+
+  1. Edit the file in VS Code
+     - pages/index.js       to change the UI
+     - pages/api/analyze.js to change tasks or prompts
+
+  2. Open GitHub Desktop
+     - You will see the changed file listed
+     - Type a short summary e.g. "added new task"
+     - Click Commit to main
+     - Click Push origin
+
+  3. Vercel detects the change automatically
+     - It redeploys in about 60 seconds
+     - The live site updates — no manual steps needed
+
+
+=======================================================================
+TROUBLESHOOTING
+=======================================================================
+
+Problem: Page shows "Application error"
+  Fix: Go to Vercel dashboard → your project
+       Click the "Functions" tab or "Deployments" → View logs
+       Look for red error text
+       Most likely cause: one of the 3 env variables is wrong
+
+Problem: "AI call failed" on the website
+  Fix: Check COMPANY_API_KEY and COMPANY_BASE_URL in Vercel
+       Go to Vercel → your project → Settings → Environment Variables
+       Delete and re-add them carefully with no extra spaces
+
+Problem: "Module not found" error on deploy
+  Fix: Make sure package.json is in the ROOT of the GitHub folder
+       Not inside any subfolder
+
+Problem: Node --version not recognised
+  Fix: Re-install Node.js and restart VS Code completely
+
+Problem: GitHub Desktop doesn't show your repository
+  Fix: Make sure you are signed in to the same GitHub account
+       in both the browser and GitHub Desktop
+
+
+=======================================================================
+YOUR FINAL FILE STRUCTURE
+=======================================================================
+
+ai-business-analyst/           ← your GitHub folder
+  pages/
+    index.js                   ← the page users see
+    api/
+      analyze.js               ← calls company AI (key stored safely)
+  package.json                 ← tells Vercel what to install
+  .gitignore                   ← stops secrets going to GitHub
+  README.md                    ← auto-created by GitHub
+
+=======================================================================
